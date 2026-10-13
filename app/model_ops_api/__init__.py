@@ -1,1 +1,1 @@
-"""Model operations API used by the LLMOps learning lab."""
+"""LLMOps 学习仓库中的模型运维 API 模块。"""

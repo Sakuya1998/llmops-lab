@@ -75,11 +75,27 @@ ruff format --check .
 mypy app
 ```
 
-也可以使用 Makefile 中的快捷命令，例如 `make install`、`make run`、`make test`。\n\n运行确定性评测门禁：\n\n```bash\npython pipelines/evaluation/evaluate.py\npytest -q tests/test_evaluation.py\n```\n\n启动本地 API + Prometheus 组合实验（需要 Docker Compose）：\n\n```bash\ndocker compose -f compose.yaml up --build\n```\n\nAPI 文档位于 http://127.0.0.1:8000/docs，Prometheus 位于 http://127.0.0.1:9090。停止实验使用 `docker compose -f compose.yaml down`。
+也可以使用 Makefile 中的快捷命令，例如 `make install`、`make run`、`make test`。
+
+运行确定性评测门禁：
+
+```bash
+python pipelines/evaluation/evaluate.py
+pytest -q tests/test_evaluation.py
+```
+
+启动本地 API + Prometheus 组合实验（需要 Docker Compose）：
+
+```bash
+docker compose -f compose.yaml up --build
+```
+
+API 文档位于 http://127.0.0.1:8000/docs，Prometheus 位于 http://127.0.0.1:9090。停止实验使用 `docker compose -f compose.yaml down`。
 
 ## 当前起步 API
 
-- `GET /health`：返回基础健康状态。\n- `GET /metrics`：导出 Prometheus HTTP 请求量与时延指标。
+- `GET /health`：返回基础健康状态。
+- `GET /metrics`：导出 Prometheus HTTP 请求量与时延指标。
 - `POST /api/v1/models`：登记模型部署元数据。
 - `GET /api/v1/models`：列出已登记的模型。
 - `GET /api/v1/models/{model_id}`：按 ID 查询模型记录。
@@ -91,9 +107,11 @@ mypy app
 - `app/model_ops_api/`：API 接口与领域数据结构。
 - `tests/`：自动化测试。
 - `serving/vllm/`：模型服务学习笔记与示例。
-- `observability/`：Prometheus 指标、抓取配置和告警。\n- `compose.yaml`：本地 API + Prometheus 实验环境。
+- `observability/`：Prometheus 指标、抓取配置和告警。
+- `compose.yaml`：本地 API + Prometheus 实验环境。
 - `deploy/`：Docker 与 Kubernetes 示例。
-- `pipelines/evaluation/`：可运行的合成数据评测与回归门禁。\n- `serving/vllm/benchmark_openai_compatible.py`：OpenAI-compatible 推理端点并发基准脚本。
+- `pipelines/evaluation/`：可运行的合成数据评测与回归门禁。
+- `serving/vllm/benchmark_openai_compatible.py`：OpenAI-compatible 推理端点并发基准脚本。
 - `docs/learning-materials/`：系统化中文课程讲义。
 - `docs/weekly-notes/`：每周任务和真实学习记录。
 - `docs/`：路线、架构、Codex 工作流和运维手册。

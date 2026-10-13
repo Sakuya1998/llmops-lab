@@ -1,7 +1,6 @@
 """模型登记 API 的接口契约测试。"""
 
 from fastapi.testclient import TestClient
-
 from model_ops_api.main import _models, app
 
 client = TestClient(app)

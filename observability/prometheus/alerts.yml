@@ -7,5 +7,5 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "LLMOps Lab API target is down"
-          description: "Prometheus has been unable to scrape the API target for 2 minutes."
+          summary: "LLMOps 实验室 API 抓取目标不可用"
+          description: "Prometheus 已连续 2 分钟无法抓取 API 指标目标。"

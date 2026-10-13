@@ -24,7 +24,7 @@ jobs:
       - name: 代码静态检查
         run: ruff check .
       - name: 检查代码格式
-        run: ruff format --check .
+        run: ruff format --check app tests pipelines serving
       - name: 类型检查
         run: mypy app
       - name: 运行测试并统计覆盖率

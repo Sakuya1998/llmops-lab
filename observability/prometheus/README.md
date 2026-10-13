@@ -1,11 +1,16 @@
-# Observability learning track
+# 可观测性学习路线
 
-Milestones:
+建议按以下顺序推进：
 
-1. Add application metrics with `prometheus-client`.
-2. Expose a `/metrics` endpoint and measure request count, latency, and errors.
-3. Add scrape configuration and validate target health.
-4. Create alert rules for API availability, error ratio, and latency.
-5. Build a Grafana dashboard and document alert response steps.
+1. 使用 `prometheus-client` 为应用添加指标。
+2. 暴露 `/metrics` 端点，并记录请求量、延迟和错误数。
+3. 配置 Prometheus 抓取目标，确认 target 健康状态。
+4. 为 API 可用性、错误率和延迟编写告警规则。
+5. 建立 Grafana 仪表盘，并为告警编写处理步骤。
 
-Avoid high-cardinality labels such as request IDs, user IDs, raw prompts, or arbitrary model input. Never put prompt or response content into metric labels.
+## 指标设计注意事项
+
+- 避免高基数标签，例如 request ID、user ID、原始提示词或任意用户输入。
+- 不要把提示词、模型回答或其他敏感内容写入指标标签。
+- 指标用于聚合和趋势分析；排查单次请求时，应使用经过脱敏的日志和追踪信息。
+- 告警阈值应结合服务 SLO、流量基线和实际故障演练逐步确定。

@@ -1,12 +1,16 @@
-# LLM evaluation pipeline (planned)
+# 大语言模型评测流水线（规划中）
 
-The first evaluation milestone should be deterministic and inexpensive:
+第一阶段应做到可重复、成本可控，先建立最小闭环。
 
-- Keep a small, versioned, synthetic dataset in the repository.
-- Define task-specific checks before selecting a model.
-- Record model identifier, model revision, prompt version, parameters, latency, and token usage.
-- Separate hard correctness checks from human preference review.
-- Compare candidate and baseline results before a release.
-- Set explicit thresholds and fail the pipeline when regression limits are exceeded.
+## 实施建议
 
-Never commit private production prompts, customer data, credentials, or licensed datasets without permission.
+- 在仓库中维护规模较小、版本可控的合成数据集。
+- 在选择模型前，先定义与任务相匹配的检查标准。
+- 记录模型标识、模型版本、提示词版本、推理参数、延迟和 token 用量。
+- 将可自动判断的硬性正确性检查与人工偏好评审分开。
+- 比较候选版本与基线版本的结果，再决定是否发布。
+- 设置明确的回归阈值；超出阈值时应阻止流水线继续发布。
+
+## 数据安全
+
+未经授权，不要提交生产提示词、客户数据或受许可证限制的数据集。评测结果也可能包含敏感信息，应按数据分级要求存储和共享。

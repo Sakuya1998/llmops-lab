@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "llmops-lab"
 version = "0.1.0"
-description = "Hands-on AI infrastructure and LLMOps learning lab"
+description = "AI 基础设施与 LLMOps 实战学习仓库"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

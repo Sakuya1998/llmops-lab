@@ -1,4 +1,4 @@
-"""Small FastAPI service for learning API engineering and operations."""
+"""用于学习 API 工程化与服务运维的 FastAPI 示例。"""
 
 from collections.abc import Sequence
 from uuid import UUID
@@ -8,18 +8,18 @@ from fastapi import FastAPI, HTTPException, status
 from model_ops_api.schemas import ModelCreate, ModelRecord
 
 app = FastAPI(
-    title="LLMOps Lab Model Operations API",
+    title="LLMOps 实验室模型运维 API",
     version="0.1.0",
-    description="A learning API for registering model deployment metadata.",
+    description="用于登记模型部署元数据的学习型 API。",
 )
 
-# Deliberately in-memory for the first learning milestone. This is not durable storage.
+# 第一阶段刻意使用内存存储，方便理解接口设计；这不是持久化存储。
 _models: dict[UUID, ModelRecord] = {}
 
 
-@app.get("/health", tags=["operations"])
+@app.get("/health", tags=["运维"])
 def health() -> dict[str, str]:
-    """Return a basic liveness response."""
+    """返回基础存活状态。"""
     return {"status": "ok"}
 
 
@@ -27,25 +27,25 @@ def health() -> dict[str, str]:
     "/api/v1/models",
     response_model=ModelRecord,
     status_code=status.HTTP_201_CREATED,
-    tags=["models"],
+    tags=["模型"],
 )
 def create_model(payload: ModelCreate) -> ModelRecord:
-    """Register a model deployment record."""
+    """登记一条模型部署记录。"""
     record = ModelRecord(**payload.model_dump())
     _models[record.id] = record
     return record
 
 
-@app.get("/api/v1/models", response_model=list[ModelRecord], tags=["models"])
+@app.get("/api/v1/models", response_model=list[ModelRecord], tags=["模型"])
 def list_models() -> Sequence[ModelRecord]:
-    """List model records in insertion order."""
+    """列出所有模型记录，顺序与登记顺序一致。"""
     return list(_models.values())
 
 
-@app.get("/api/v1/models/{model_id}", response_model=ModelRecord, tags=["models"])
+@app.get("/api/v1/models/{model_id}", response_model=ModelRecord, tags=["模型"])
 def get_model(model_id: UUID) -> ModelRecord:
-    """Fetch one model record by ID."""
+    """按 ID 查询一条模型记录。"""
     record = _models.get(model_id)
     if record is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Model not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="未找到该模型")
     return record

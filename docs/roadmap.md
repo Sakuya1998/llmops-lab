@@ -1,50 +1,63 @@
-# Six-month roadmap
+# 六个月学习路线
 
-## Month 1 — Python service engineering
-- Week 1: virtual environments, packaging, type hints, API basics, pytest.
-- Week 2: validation, error handling, structured logging, configuration.
-- Week 3: Docker image, non-root user, health probes.
-- Week 4: CI, code quality, test coverage, API contract documentation.
+目标是从已有的运维经验出发，逐步掌握 AI 基础设施与 LLMOps。按每天 1–2 小时的节奏推进即可，不要求一次完成所有内容。
 
-**Exit criteria:** a reproducible API that passes tests and CI from a clean checkout.
+## 第 1 个月：Python 服务工程化
 
-## Month 2 — Model serving
-- Learn inference lifecycle, GPU memory, quantization, batching, and KV cache.
-- Run a compatible model locally or in a disposable GPU environment.
-- Benchmark latency and throughput with a documented methodology.
+- 第 1 周：虚拟环境、Python 包管理、类型标注、API 基础与 pytest。
+- 第 2 周：请求校验、异常处理、结构化日志和配置管理。
+- 第 3 周：Docker 镜像、非 root 用户、健康探针。
+- 第 4 周：CI、代码质量、测试覆盖率和 API 契约文档。
 
-**Exit criteria:** a repeatable benchmark report and a model-serving runbook.
+**阶段验收：** 从干净的 Git checkout 出发，可以按文档复现安装、运行和测试流程。
 
-## Month 3 — Observability
-- Instrument request count, latency, errors, queue depth, and model-specific metrics.
-- Build Prometheus alerts and a Grafana dashboard.
-- Practice diagnosing availability, latency, and saturation symptoms.
+## 第 2 个月：模型服务与推理
 
-**Exit criteria:** dashboard, alerts, and a short incident playbook.
+- 学习推理请求生命周期、GPU 显存、量化、批处理和 KV Cache。
+- 在本地或可回收的 GPU 实验环境中运行一个符合使用许可的模型。
+- 用明确的测试方法记录延迟与吞吐量。
 
-## Month 4 — Kubernetes
-- Package the API and inference service for Kubernetes.
-- Add probes, requests/limits, security context, rollout and rollback.
-- Study GPU scheduling and node capacity if GPU infrastructure is available.
+**阶段验收：** 产出可重复执行的基准测试报告和模型服务运维手册。
 
-**Exit criteria:** reproducible deployment manifests and tested rollback steps.
+## 第 3 个月：可观测性
 
-## Month 5 — LLMOps
-- Build a small synthetic evaluation dataset.
-- Version prompts and evaluation configuration.
-- Add baseline/candidate comparisons and a release gate.
+- 为请求量、延迟、错误、队列深度和模型相关指标添加埋点。
+- 构建 Prometheus 告警与 Grafana 仪表盘。
+- 练习分析可用性、延迟和资源饱和问题。
 
-**Exit criteria:** evaluation results are repeatable and can block a regressed release.
+**阶段验收：** 提供仪表盘、告警规则和简明故障处理手册。
 
-## Month 6 — Portfolio and reliability
-- Connect API, serving, observability, and evaluation into one demonstrable workflow.
-- Perform failure drills: model unavailable, slow inference, bad release, exhausted capacity.
-- Document architecture, trade-offs, known limitations, and recovery procedures.
+## 第 4 个月：Kubernetes
 
-**Exit criteria:** a clean demo, operational docs, and a portfolio README.
+- 将 API 和推理服务部署到 Kubernetes。
+- 配置探针、资源 requests/limits、发布和回滚流程。
+- 如果有 GPU 环境，继续学习 GPU 调度和节点容量规划。
 
-## Weekly cadence (1–2 hours/day)
-- 3 days: learn and implement.
-- 1 day: tests and debugging.
-- 1 day: docs and operational notes.
-- Weekend: review progress and choose one small next milestone.
+**阶段验收：** 部署清单可以重复使用，并实际验证回滚步骤。
+
+## 第 5 个月：LLMOps
+
+- 建立小规模的合成评测数据集。
+- 对提示词与评测配置进行版本管理。
+- 增加基线/候选版本比较与发布门禁。
+
+**阶段验收：** 评测结果可重复生成，并能阻止质量退化的版本发布。
+
+## 第 6 个月：项目整合与可靠性
+
+- 将 API、模型服务、可观测性和评测串成一个可演示的工作流。
+- 演练模型不可用、推理变慢、错误发布和容量不足等故障。
+- 编写架构说明、技术取舍、已知限制与恢复流程。
+
+**阶段验收：** 得到一个可从头复现的演示项目，以及完整的运维文档。
+
+## 每周时间安排
+
+- 3 天：学习概念并动手实现。
+- 1 天：补测试、排查问题。
+- 1 天：完善文档和运维记录。
+- 周末：复盘本周进展，确定下一个小目标。
+
+## 学习原则
+
+不要只复制代码。每完成一个功能，都应能解释它解决什么问题、有哪些失败模式、如何监控，以及发生故障时怎样恢复。

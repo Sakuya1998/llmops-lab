@@ -1,26 +1,30 @@
-# Week 1 — Build a service, not just a script
+# 第 1 周：构建服务，而不只是编写脚本
 
-## Goals
-- [ ] Create and activate a Python virtual environment.
-- [ ] Install the project in editable mode.
-- [ ] Run the API and inspect `/docs`.
-- [ ] Run the test suite.
-- [ ] Run Ruff and mypy; fix any issues rather than suppressing them blindly.
-- [ ] Explain the difference between liveness and readiness.
-- [ ] Write down why in-memory state disappears on restart and is not shared between replicas.
+## 本周目标
 
-## Daily plan
-- Day 1: local environment, run the API, explore the endpoints.
-- Day 2: read `main.py` and `schemas.py`; explain each type and decorator.
-- Day 3: add a delete endpoint with a 204 response and tests.
-- Day 4: add structured request logging without logging prompts or secrets.
-- Day 5: run checks, update this note, and summarize what failed and why.
+- [ ] 创建并激活 Python 虚拟环境。
+- [ ] 以 editable mode 安装当前项目。
+- [ ] 启动 API 并查看 `/docs`。
+- [ ] 运行自动化测试。
+- [ ] 运行 Ruff 和 mypy；理解报错后再修复，不要不加判断地屏蔽检查。
+- [ ] 解释 liveness（存活探针）与 readiness（就绪探针）的区别。
+- [ ] 说明为什么内存数据会在进程重启后丢失，也无法在多个副本间共享。
 
-## Questions to answer
-1. What happens when Pydantic rejects an invalid request?
-2. Why should an API return a stable error contract?
-3. What does the container's non-root user protect against?
-4. Which data must not be included in logs or metric labels?
+## 每日计划
 
-## Notes
-Add your own commands, errors, fixes, and observations here. Prefer real debugging notes over copied theory.
+- 第 1 天：准备本地环境，运行 API，查看各个接口。
+- 第 2 天：阅读 `main.py` 与 `schemas.py`，尝试解释每个类型和装饰器。
+- 第 3 天：增加删除接口，返回 204，并为其编写测试。
+- 第 4 天：添加结构化请求日志，但不要记录提示词、密钥或其他敏感内容。
+- 第 5 天：运行所有检查，更新本周记录，总结遇到的问题和解决方法。
+
+## 需要回答的问题
+
+1. 当 Pydantic 拒绝一个无效请求时，会发生什么？
+2. 为什么 API 应提供稳定且可预测的错误契约？
+3. 容器使用非 root 用户运行，可以降低哪些风险？
+4. 哪些数据不应写入日志或 Prometheus 指标标签？
+
+## 学习记录
+
+在这里记录真实执行过的命令、遇到的错误、修复过程和自己的理解。尽量写下亲自排查的过程，而不是直接复制理论内容。

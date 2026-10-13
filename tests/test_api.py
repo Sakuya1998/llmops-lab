@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from model_ops_api.main import app, _models
+from model_ops_api.main import _models, app
 
 client = TestClient(app)
 
@@ -62,3 +62,12 @@ def test_blank_name_is_rejected() -> None:
     """模型名称为空时应返回 422。"""
     response = client.post("/api/v1/models", json={"name": ""})
     assert response.status_code == 422
+
+
+def test_metrics_endpoint_exposes_http_metrics() -> None:
+    """指标端点应暴露 Prometheus 格式，且自身请求不计入业务请求。"""
+    client.get("/health")
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert "llmops_http_requests_total" in response.text
+    assert "llmops_http_request_duration_seconds" in response.text

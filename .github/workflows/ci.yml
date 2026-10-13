@@ -1,4 +1,4 @@
-name: CI
+name: 持续集成
 
 on:
   push:
@@ -12,20 +12,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 检出代码
         uses: actions/checkout@v4
-      - name: Set up Python
+      - name: 配置 Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-      - name: Install project and dev dependencies
+      - name: 安装项目和开发依赖
         run: python -m pip install -e ".[dev]"
-      - name: Lint
+      - name: 代码静态检查
         run: ruff check .
-      - name: Format check
+      - name: 检查代码格式
         run: ruff format --check .
-      - name: Type check
+      - name: 类型检查
         run: mypy app
-      - name: Tests
+      - name: 运行测试并统计覆盖率
         run: pytest --cov=app/model_ops_api --cov-report=term-missing

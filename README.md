@@ -74,6 +74,24 @@ mypy app
 - Kubernetes 与模型服务示例仅供学习。用于真实环境前，必须审查资源限制、访问控制、镜像版本和持久化方案。
 - 未经授权，不要把公司机密、用户数据或生产提示词发送给第三方模型服务。
 
+## 使用 Codex 持续学习
+
+仓库根目录的 [`AGENTS.md`](AGENTS.md) 定义了长期协作规范；`.agents/skills/` 提供面向不同任务的可复用技能。建议在 Codex Desktop 中打开仓库根目录使用。
+
+- [Codex 使用指南](docs/codex-workflow.md)：常用提示词、任务流程与验收要求。
+- [学习教练技能](.agents/skills/learning-coach/SKILL.md)：按每天 1–2 小时规划学习与复盘。
+- [Python API 工程化技能](.agents/skills/python-api-engineering/SKILL.md)：接口实现、代码讲解与测试。
+- [可观测性与 SRE 技能](.agents/skills/observability-sre/SKILL.md)：指标、告警、仪表盘和排障。
+- [Kubernetes 运维技能](.agents/skills/kubernetes-operations/SKILL.md)：部署清单、安全、发布和回滚。
+- [vLLM 模型服务技能](.agents/skills/vllm-serving/SKILL.md)：推理资源规划与性能实验。
+- [LLM 评测技能](.agents/skills/llm-evaluation/SKILL.md)：评测数据集、质量门禁与版本比较。
+
+示例提示词：
+
+> 请遵守 `AGENTS.md`，根据学习路线和当前周记，带我完成今天 1–2 小时的任务。先给出目标、步骤和验收标准，再循序渐进地指导我；不要假设测试已通过。
+
+技能放在仓库的 `.agents/skills/` 中，可随项目版本管理，方便在不同开发环境中复用。如果 Codex 没有显示新技能，尝试重新加载工作区或重启 Codex。
+
 ## 每周学习循环
 
 1. 学习一个核心概念。

@@ -13,7 +13,7 @@ lint:
 	ruff check .
 
 format:
-	ruff format .
+	ruff format app tests pipelines serving
 
 typecheck:
 	mypy app
@@ -21,4 +21,4 @@ typecheck:
 check: lint format-check typecheck test
 
 format-check:
-	ruff format --check .
+	ruff format --check app tests pipelines serving

@@ -1,6 +1,6 @@
 """用于学习 API 工程化与服务运维的 FastAPI 示例。"""
 
-from collections.abc import Sequence
+from collections.abc import Awaitable, Callable, Sequence
 from time import perf_counter
 from uuid import UUID
 
@@ -31,7 +31,9 @@ HTTP_REQUEST_DURATION = Histogram(
 
 
 @app.middleware("http")
-async def observe_http_requests(request: Request, call_next) -> Response:
+async def observe_http_requests(
+    request: Request, call_next: Callable[[Request], Awaitable[Response]]
+) -> Response:
     """记录低基数 HTTP 指标；绝不使用原始 URL、用户 ID 或提示词作为标签。"""
     if request.url.path == "/metrics":
         return await call_next(request)

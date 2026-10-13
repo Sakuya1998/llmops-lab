@@ -1,0 +1,11 @@
+groups:
+  - name: llmops-lab-api
+    rules:
+      - alert: LLMOpsLabAPIDown
+        expr: up{job="llmops-lab-api"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "LLMOps Lab API target is down"
+          description: "Prometheus has been unable to scrape the API target for 2 minutes."

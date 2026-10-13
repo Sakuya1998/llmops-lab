@@ -26,3 +26,6 @@ datasets/private
 tmp
 docs
 tests
+
+# Local benchmark and evaluation reports
+artifacts/

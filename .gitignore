@@ -36,3 +36,6 @@ datasets/private/
 # Local runtime outputs
 *.log
 tmp/
+
+# Local benchmark and evaluation reports
+artifacts/

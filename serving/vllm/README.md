@@ -1,13 +1,18 @@
-# vLLM serving track
+# vLLM 模型服务学习路线
 
-This directory will hold reproducible model-serving experiments.
+本目录用于记录可复现的模型推理与服务实验。
 
-Study sequence:
+## 建议学习顺序
 
-1. Understand GPU memory, model weights, KV cache, batching, and context length.
-2. Run a small compatible model in a disposable environment.
-3. Record throughput, time to first token, inter-token latency, concurrency, and GPU utilization.
-4. Compare safe baseline settings before changing tensor parallelism or batching.
-5. Add health checks, resource requests, rollout strategy, and operational runbooks before Kubernetes deployment.
+1. 理解 GPU 显存、模型权重、KV Cache、批处理和上下文长度之间的关系。
+2. 在隔离环境中运行一个兼容且许可条件合适的小模型。
+3. 记录吞吐量、首 token 延迟（TTFT）、token 间延迟、并发量和 GPU 利用率。
+4. 在固定测试条件下比较基线配置，再调整 tensor parallelism 或批处理参数。
+5. 在 Kubernetes 部署前，补齐健康检查、资源请求、发布策略和运维手册。
 
-Model availability and hardware requirements vary. Start with a model whose license permits your intended use, and never expose an unauthenticated inference endpoint to the public internet.
+## 实验注意事项
+
+- 模型的硬件要求和可用性因模型而异，应先核对模型卡、许可证和显存需求。
+- 基准测试必须记录硬件、模型版本、输入长度、输出长度、并发量和测试时长，否则数据不可直接比较。
+- 不要将未经认证的推理服务直接暴露到公网。
+- GPU 资源有限时，优先在可回收的实验环境中验证，不要影响生产工作负载。

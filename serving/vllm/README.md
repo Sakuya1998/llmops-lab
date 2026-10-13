@@ -16,3 +16,13 @@
 - 基准测试必须记录硬件、模型版本、输入长度、输出长度、并发量和测试时长，否则数据不可直接比较。
 - 不要将未经认证的推理服务直接暴露到公网。
 - GPU 资源有限时，优先在可回收的实验环境中验证，不要影响生产工作负载。
+
+## 可执行基准脚本
+
+脚本路径：benchmark_openai_compatible.py。它只依赖 Python 标准库，适用于已授权且已运行的 OpenAI-compatible 服务；不会自动下载模型或创建云资源。
+
+    python serving/vllm/benchmark_openai_compatible.py --model YOUR_MODEL --requests 20 --concurrency 2 --report artifacts/vllm-benchmark.json
+
+默认目标是本机 127.0.0.1:8001/v1/chat/completions。按服务实际地址修改 --url。若服务需要令牌，将其放入 VLLM_API_KEY 环境变量，不要把令牌写入命令历史或提交到仓库。脚本输出请求成功率、请求吞吐、延迟近似分位数和服务返回的 token 用量（若提供）。
+
+当前 p95 使用最近秩的简化估算，测试请求体和输出上限固定；这不是严谨的性能测试框架。对比结果必须记录 GPU、模型版本、输入输出长度、并发、预热、测试时长和服务参数；避免对生产服务施加未经批准的负载。

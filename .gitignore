@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Virtual environments and local secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Model and dataset artifacts
+models/
+checkpoints/
+datasets/private/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.onnx
+
+# Local runtime outputs
+*.log
+tmp/

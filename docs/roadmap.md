@@ -2,7 +2,7 @@
 
 目标是从已有的运维经验出发，逐步掌握 AI 基础设施与 LLMOps。每天投入 1–2 小时。以下是建议节奏，不是必须赶完的硬性时间表；如果阶段验收未通过，应优先补足基础。
 
-完整讲义见 [系统化学习资料目录](learning-materials/README.md)。每周实际进度记录在 `docs/weekly-notes/`。
+完整讲义见 [系统化学习资料目录](learning-materials/README.md)。每周实际进度记录在 [每周学习记录索引与模板](weekly-notes/README.md)；不要预先填写未执行的结果。
 
 ## 第 1 个月：Python 服务工程化
 
@@ -34,6 +34,8 @@
 
 ## 第 2 个月：模型推理与 GPU
 
+实践入口：[OpenAI-compatible 基准脚本](../serving/vllm/benchmark_openai_compatible.py)。
+
 ### 第 5 周：LLM 请求生命周期
 - 阅读：LLM 推理基础。
 - 实践：理解 token、上下文、prefill、decode、TTFT、TPOT。
@@ -60,6 +62,8 @@
 **第 2 个月阶段验收：** 能解释推理性能主要变量，并能在有授权和预算的环境中复现实验，或提供完整可执行实验计划。
 
 ## 第 3 个月：可观测性与 SRE
+
+实践入口：[Prometheus 指标、抓取与告警实验](../observability/prometheus/README.md)。
 
 ### 第 9 周：指标基础
 - 学习 Counter、Gauge、Histogram、标签基数和 RED/USE。
@@ -103,6 +107,8 @@
 **第 4 个月阶段验收：** 能解释部署资源、探针、调度、安全边界及发布策略之间的关系。
 
 ## 第 5 个月：LLMOps 评测与安全
+
+实践入口：[可执行评测流水线](../pipelines/evaluation/README.md)，CI 会运行合成数据门禁。
 
 ### 第 17 周：评测数据集
 - 建立不含敏感数据的合成样本，覆盖正常、边界和安全场景。

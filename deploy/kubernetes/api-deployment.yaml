@@ -14,6 +14,7 @@ spec:
       labels:
         app.kubernetes.io/name: llmops-lab-api
     spec:
+      # 以非 root 用户运行容器，并启用默认 seccomp 配置。
       securityContext:
         runAsNonRoot: true
         runAsUser: 10001
@@ -27,12 +28,14 @@ spec:
           ports:
             - name: http
               containerPort: 8000
+          # readinessProbe 决定 Pod 是否可以接收流量。
           readinessProbe:
             httpGet:
               path: /health
               port: http
             initialDelaySeconds: 3
             periodSeconds: 5
+          # livenessProbe 用于检测进程是否需要重启。
           livenessProbe:
             httpGet:
               path: /health

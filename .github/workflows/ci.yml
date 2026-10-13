@@ -29,3 +29,5 @@ jobs:
         run: mypy app
       - name: 运行测试并统计覆盖率
         run: pytest --cov=app/model_ops_api --cov-report=term-missing
+      - name: 验证评测样例与发布门禁
+        run: python pipelines/evaluation/evaluate.py

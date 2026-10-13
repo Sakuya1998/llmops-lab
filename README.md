@@ -64,8 +64,20 @@ mypy app
 - `observability/`：Prometheus 告警和指标设计。
 - `deploy/`：Docker 与 Kubernetes 示例。
 - `pipelines/evaluation/`：模型评测流水线起步说明。
+- `docs/learning-materials/`：按主题组织的中文学习讲义。
 - `docs/`：学习路线、每周记录、架构说明和运维手册。
 - `scripts/`：本地开发辅助脚本。
+
+## 中文学习资料
+
+从 [系统化学习资料目录](docs/learning-materials/README.md) 开始。目前第一批资料覆盖：
+
+- [Python 开发环境与依赖管理](docs/learning-materials/python-environment.md)
+- [HTTP、FastAPI 与 Pydantic](docs/learning-materials/fastapi-and-pydantic.md)
+- [pytest 与测试设计](docs/learning-materials/pytest-testing.md)
+- [Docker、进程与健康探针](docs/learning-materials/docker-healthchecks.md)
+
+讲义配合当前仓库代码与每周任务使用。每次学习一个主题，亲自执行命令、修改代码、运行测试并记录真实结果，不要把示例配置未经验证地直接用于生产环境。
 
 ## 安全与使用边界
 
@@ -100,4 +112,4 @@ mypy app
 4. 在本地运行所有检查。
 5. 记录一个可能的故障场景，以及如何发现和恢复。
 
-从 [六个月学习路线](docs/roadmap.md) 和 [第 1 周任务清单](docs/weekly-notes/week-01.md) 开始。
+从 [六个月学习路线](docs/roadmap.md)、[系统化学习资料](docs/learning-materials/README.md) 和 [第 1 周任务清单](docs/weekly-notes/week-01.md) 开始。

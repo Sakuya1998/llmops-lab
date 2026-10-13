@@ -1,4 +1,4 @@
-.PHONY: install run test lint format typecheck check
+.PHONY: install run test lint format typecheck evaluation check
 
 install:
 	python -m pip install -e ".[dev]"
@@ -18,7 +18,10 @@ format:
 typecheck:
 	mypy app
 
-check: lint format-check typecheck test
+evaluation:
+	python pipelines/evaluation/evaluate.py
+
+check: lint format-check typecheck test evaluation
 
 format-check:
 	ruff format --check app tests pipelines serving

@@ -1,4 +1,4 @@
-"""Request and response schemas for model deployment records."""
+"""模型部署记录的请求与响应数据结构。"""
 
 from datetime import datetime, timezone
 from typing import Literal
@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ModelCreate(BaseModel):
-    """Input used to register a model deployment record."""
+    """登记模型部署记录时使用的输入结构。"""
 
     name: str = Field(min_length=1, max_length=120)
     provider: Literal["local", "vllm", "openai-compatible", "other"] = "local"
@@ -17,7 +17,7 @@ class ModelCreate(BaseModel):
 
 
 class ModelRecord(BaseModel):
-    """Model metadata returned by the API."""
+    """API 返回的模型元数据。"""
 
     model_config = ConfigDict(frozen=True)
 

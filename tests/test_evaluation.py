@@ -8,7 +8,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from pipelines.evaluation.evaluate import evaluate, score
+from pipelines.evaluation.evaluate import evaluate, score  # noqa: E402
 
 
 def write_jsonl(path: Path, rows: list[dict[str, str]]) -> None:

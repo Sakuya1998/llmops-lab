@@ -1,9 +1,12 @@
 """评测流水线的确定性单元测试。"""
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pipelines.evaluation.evaluate import evaluate, score
 

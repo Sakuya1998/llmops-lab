@@ -1,28 +1,32 @@
-# Starter architecture
+# 当前起步项目架构
 
 ```text
-Developer
+开发者
    |
    v
-FastAPI HTTP layer
+FastAPI HTTP 接口层
    |
-   +--> Pydantic request validation
+   +--> Pydantic 请求数据校验
    |
-   +--> In-memory model metadata store (temporary learning implementation)
+   +--> 内存模型元数据存储（仅用于初期学习）
 ```
 
-## Intentional limitations
+## 当前有意保留的限制
 
-- No authentication or authorization: run locally only.
-- No persistent database: restart clears records and replicas do not share state.
-- No external model invocation: records describe deployments; they do not serve inference.
-- The `/health` endpoint is a simple liveness response, not a dependency readiness check.
-- No production SLO or load-test claim has been made.
+- **没有身份认证与授权：** 仅建议在本地可信环境运行。
+- **没有持久化数据库：** 进程重启后数据丢失，多个副本之间也不共享状态。
+- **不调用外部模型：** 当前接口只登记模型部署信息，不提供推理能力。
+- **健康检查较简单：** `/health` 只返回基础存活状态，不检查外部依赖或业务就绪情况。
+- **尚未声明生产 SLO 或压测结论：** 需要通过后续实验建立真实数据。
 
-## Evolution path
+## 演进建议
 
-1. Separate API/domain logic from storage behind a repository interface.
-2. Add structured logs, request IDs, and Prometheus metrics.
-3. Add persistence only after defining ownership, migrations, and failure behavior.
-4. Add authn/authz before exposing control endpoints.
-5. Integrate inference through explicit timeouts, bounded concurrency, retries only where safe, and clear error mapping.
+1. 将 API 逻辑与存储实现分离，通过 repository 接口隔离存储细节。
+2. 增加结构化日志、请求 ID 和 Prometheus 指标。
+3. 明确数据归属、数据库迁移和故障处理策略后，再接入持久化存储。
+4. 在对外开放控制接口前，补齐身份认证和权限校验。
+5. 集成推理服务时，明确超时、并发上限、安全重试条件和错误映射规则。
+
+## 设计原则
+
+先建立可以测试和观测的最小服务，再逐步增加复杂度。每一步都应有对应的验收标准，避免一开始就引入无法解释或无法验证的组件。

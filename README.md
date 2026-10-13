@@ -1,29 +1,29 @@
-# LLMOps Lab
+# LLMOps 实验室
 
-A hands-on learning lab for moving from Site Reliability / Operations Engineering into **AI Infrastructure and LLMOps**.
+这是一个帮助运维 / SRE 工程师转向 **AI Infra（AI 基础设施）与 LLMOps（大语言模型运维）** 的实战学习仓库。
 
-The repository is organized as a progressive, six-month portfolio. Start small: build and test an API, containerize it, observe it, deploy it, then add model serving and evaluation workflows.
+项目按照循序渐进的六个月路线组织：先构建并测试 API，再完成容器化、可观测性和 Kubernetes 部署，最后加入模型服务与评测流水线。
 
-## Learning profile
+## 学习背景与节奏
 
-- Background: operations engineering, Linux, shell/Python automation, cloud, Kubernetes, monitoring.
-- Pace: 1–2 hours per day.
-- Approach: every topic should produce a runnable artifact, a test, or an operational runbook.
+- 适合人群：具备 Linux、Shell/Python 自动化、云平台、Kubernetes、监控等运维经验的工程师。
+- 每日投入：建议每天 1–2 小时。
+- 学习原则：每个主题都尽量产出可运行的代码、自动化测试或运维手册。
 
-## Roadmap
+## 学习路线
 
-| Phase | Focus | Deliverable |
+| 阶段 | 学习重点 | 阶段产出 |
 |---|---|---|
-| 1 | Python service engineering | FastAPI model registry API, tests, lint/type checks |
-| 2 | Model serving fundamentals | vLLM deployment notes, benchmark plan, resource considerations |
-| 3 | Observability | Prometheus metrics, alert rules, Grafana dashboard plan |
-| 4 | Kubernetes operations | manifests, probes, resources, rollout and rollback runbooks |
-| 5 | LLMOps | evaluation dataset, repeatable evaluation job, release gates |
-| 6 | Portfolio & reliability | end-to-end demo, failure drills, architecture and incident docs |
+| 第 1 阶段 | Python 服务工程化 | FastAPI 模型登记 API、自动化测试、代码检查 |
+| 第 2 阶段 | 模型推理基础 | vLLM 部署笔记、基准测试方案、资源规划 |
+| 第 3 阶段 | 可观测性 | Prometheus 指标、告警规则、Grafana 仪表盘设计 |
+| 第 4 阶段 | Kubernetes 运维 | 部署清单、探针、资源限制、发布与回滚手册 |
+| 第 5 阶段 | LLMOps | 评测数据集、可重复评测任务、发布门禁 |
+| 第 6 阶段 | 项目整合与可靠性 | 端到端演示、故障演练、架构与事故文档 |
 
-## Quick start
+## 快速开始
 
-Requires Python 3.11+.
+环境要求：Python 3.11 或更高版本。
 
 ```bash
 git clone https://github.com/Sakuya1998/llmops-lab.git
@@ -34,9 +34,9 @@ python -m pip install -e ".[dev]"
 uvicorn model_ops_api.main:app --reload --app-dir app
 ```
 
-Open the interactive API docs at http://127.0.0.1:8000/docs.
+启动后访问 http://127.0.0.1:8000/docs 查看交互式 API 文档。
 
-Run checks:
+运行代码检查与测试：
 
 ```bash
 pytest
@@ -45,39 +45,41 @@ ruff format --check .
 mypy app
 ```
 
-## API endpoints
+也可以使用 Makefile 中的快捷命令，例如 `make install`、`make run`、`make test`。
 
-- `GET /health` — liveness-style health response.
-- `POST /api/v1/models` — register a model deployment record.
-- `GET /api/v1/models` — list registered model records.
-- `GET /api/v1/models/{model_id}` — retrieve one record.
+## 当前 API
 
-The first version uses in-memory storage intentionally. It is a learning exercise, **not** durable storage or a production model registry.
+- `GET /health`：返回基础存活状态。
+- `POST /api/v1/models`：登记一条模型部署元数据。
+- `GET /api/v1/models`：列出已登记的模型。
+- `GET /api/v1/models/{model_id}`：按 ID 查询模型记录。
 
-## Repository map
+第一版故意使用内存存储，便于学习 API 设计。**它不是持久化的生产级模型注册中心**：进程重启后数据会丢失，多副本之间也不会共享数据。
 
-- `app/model_ops_api/` — API and domain schemas.
-- `tests/` — automated tests.
-- `serving/vllm/` — model-serving notes and examples.
-- `observability/` — Prometheus rules and metrics design.
-- `deploy/` — Docker and Kubernetes examples.
-- `pipelines/evaluation/` — evaluation workflow starter.
-- `docs/` — roadmap, weekly notes, architecture, runbooks.
-- `scripts/` — local developer helpers.
+## 目录说明
 
-## Safety and scope
+- `app/model_ops_api/`：API 接口与领域数据结构。
+- `tests/`：自动化测试。
+- `serving/vllm/`：模型服务学习笔记与示例。
+- `observability/`：Prometheus 告警和指标设计。
+- `deploy/`：Docker 与 Kubernetes 示例。
+- `pipelines/evaluation/`：模型评测流水线起步说明。
+- `docs/`：学习路线、每周记录、架构说明和运维手册。
+- `scripts/`：本地开发辅助脚本。
 
-- Never commit credentials, API keys, private datasets, or production configuration.
-- Copy `.env.example` to `.env` for local experiments; `.env` is git-ignored.
-- Kubernetes and model-serving examples are educational; review resource limits, access controls, image versions, and storage before any real deployment.
-- Do not send confidential company data to third-party model APIs.
+## 安全与使用边界
 
-## Weekly learning loop
+- 不要提交密码、API Key、访问令牌、私有数据集或生产环境配置。
+- 本地实验可以复制 `.env.example` 为 `.env`；真实的 `.env` 文件已加入 Git 忽略规则。
+- Kubernetes 与模型服务示例仅供学习。用于真实环境前，必须审查资源限制、访问控制、镜像版本和持久化方案。
+- 未经授权，不要把公司机密、用户数据或生产提示词发送给第三方模型服务。
 
-1. Read one concept.
-2. Implement a small change.
-3. Add or update a test.
-4. Run checks locally.
-5. Write down one operational failure mode and how to detect/recover from it.
+## 每周学习循环
 
-See [the roadmap](docs/roadmap.md) and [week 1 plan](docs/weekly-notes/week-01.md).
+1. 学习一个核心概念。
+2. 实现一个小功能。
+3. 为功能补充或更新测试。
+4. 在本地运行所有检查。
+5. 记录一个可能的故障场景，以及如何发现和恢复。
+
+从 [六个月学习路线](docs/roadmap.md) 和 [第 1 周任务清单](docs/weekly-notes/week-01.md) 开始。
